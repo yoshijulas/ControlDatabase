@@ -10,50 +10,52 @@
     <script src="main.js"></script>
   </head>
   <body>
-    <header class="bg-slate-300 py-2 border-b-slate-400 border-b-2">
-      <h1 class="text-5xl font-bold text-center py-4 text-neutral-700">Consulta de Informacion</h1>
+    <header class="bg-[#a1672e] py-2 border-b-slate-400 border-b-2">
+      <h1 class="text-5xl font-bold text-center py-4 text-neutral-300">Biblioteca</h1>
     </header>
 
-    <div id="main-container" class="border-orange-300 border-2 mx-6 rounded-md p-4 my-4 bg-violet-100 mt-10">
+    <div
+      id="main-container"
+      class="flex min-w-[18rem] border-orange-300 border-2 w-[50%] rounded-md p-4 my-4 bg-violet-100 mt-10 mx-auto">
       <form id="data-form" action="" method="post">
-        <div id="input-div" class="flex justify-around flex-wrap pb-6">
-          <div id="matricula-div" class="flex flex-col text-center">
-            <label for="matricula" class="text-neutral-500">Matricula</label>
+        <div id="input-div" class="flex-row justify-around flex-wrap pb-6">
+          <div id="nombre-libro-div" class="flex flex-col text-center">
+            <label for="nombre-libro" class="text-neutral-500">Nombre del libro</label>
             <input
               type="text"
-              name="matricula"
-              id="matricula"
-              placeholder="Matricula"
+              name="nombre-libro"
+              id="nombre-libro"
+              placeholder="Nombre del libro"
               class="rounded-md border-gray-600 py-1 px-2 m-2 shadow" />
           </div>
 
-          <div id="nombre-div" class="flex flex-col text-center">
-            <label for="nombre" class="text-neutral-500">Nombre</label>
+          <div id="autor-div" class="flex flex-col text-center">
+            <label for="autor" class="text-neutral-500">Autor</label>
             <input
               type="text"
-              name="nombre"
-              id="nombre"
-              placeholder="Nombre"
+              name="autor"
+              id="autor"
+              placeholder="Autor"
               class="rounded-md border-gray-600 py-1 px-2 m-2 shadow" />
           </div>
 
-          <div id="telefono-div" class="flex flex-col text-center">
-            <label for="telefono" class="text-neutral-500">Telefono</label>
+          <div id="anno-div" class="flex flex-col text-center">
+            <label for="anno" class="text-neutral-500">Año</label>
             <input
               type="text"
-              name="telefono"
-              id="telefono"
-              placeholder="Telefono"
+              name="anno"
+              id="anno"
+              placeholder="Año"
               class="rounded-md border-gray-600 py-1 px-2 m-2 shadow" />
           </div>
 
-          <div id="edad-div" class="flex flex-col text-center">
-            <label for="edad" class="text-neutral-500">Edad</label>
+          <div id="editorial-div" class="flex flex-col text-center">
+            <label for="editorial" class="text-neutral-500">Editorial</label>
             <input
               type="text"
-              name="edad"
-              id="edad"
-              placeholder="Edad"
+              name="editorial"
+              id="editorial"
+              placeholder="Editorial"
               class="rounded-md border-gray-600 py-1 px-2 m-2 shadow" />
           </div>
         </div>
@@ -67,9 +69,9 @@
             class="w-32 mx-auto bg-white shadow py-2 px-8 my-2 rounded hover:bg-slate-200 hover:cursor-pointer" />
           <input
             type="submit"
-            value="Crear"
-            name="crear"
-            id="crear"
+            value="Añadir"
+            name="anadir"
+            id="anadir"
             class="w-32 mx-auto bg-white shadow py-2 px-8 my-2 rounded hover:bg-slate-200 hover:cursor-pointer" />
           <input
             type="submit"
@@ -107,6 +109,5 @@
     </div>
   </body>
 </html>
-
 
 <!-- Josue Aburto Perez K021 -->
