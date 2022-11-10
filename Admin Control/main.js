@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
-$(document).ready(() => {
-  $('#anterior').click(() => {
+$(document).on('DOMContentLoaded', () => {
+  $('#anterior').on('click', () => {
     const anterior = true;
     const matricula = $('#matricula').val();
 
@@ -28,7 +28,7 @@ $(document).ready(() => {
     return false;
   });
 
-  $('#crear').click(() => {
+  $('#crear').on('click', () => {
     const crear = true;
     const matricula = $('#matricula').val();
     const nombre = $('#nombre').val();
@@ -55,7 +55,7 @@ $(document).ready(() => {
     return false;
   });
 
-  $('#buscar').click(() => {
+  $('#buscar').on('click', () => {
     const buscar = true;
     const matricula = $('#matricula').val();
 
@@ -87,7 +87,7 @@ $(document).ready(() => {
     return false;
   });
 
-  $('#eliminar').click(() => {
+  $('#eliminar').on('click', () => {
     const eliminar = true;
 
     const matricula = $('#matricula').val();
@@ -109,7 +109,7 @@ $(document).ready(() => {
     return false;
   });
 
-  $('#actualizar').click(() => {
+  $('#actualizar').on('click', () => {
     const actualizar = true;
     const matricula = $('#matricula').val();
     const nombre = $('#nombre').val();
@@ -136,7 +136,7 @@ $(document).ready(() => {
     return false;
   });
 
-  $('#siguiente').click(() => {
+  $('#siguiente').on('click', () => {
     const siguiente = true;
     const matricula = $('#matricula').val();
 
