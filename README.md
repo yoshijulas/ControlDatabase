@@ -25,7 +25,7 @@ Create table for Usuarios
   'telefono' varchar(14) DEFAULT NULL,
   'contrasena' varchar(50) DEFAULT NULL,
   PRIMARY KEY ('correo')
-)
+);
 ```
 
 Create table for Admin Control
