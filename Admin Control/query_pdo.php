@@ -1,5 +1,7 @@
 <?php
 
+define("SUCCESS", "00000");
+
 $hostname = "localhost"; // Host name
 $username = "root"; // Mysql username
 $password = ""; // Mysql password
@@ -26,8 +28,12 @@ if (isset($_REQUEST["crear"])) {
     $stmt = $connection->prepare($sql);
     $stmt->execute();
     $error = $stmt->errorInfo();
-    if ($error[0] != "00000") {
-      echo "Error: " . $error[2];
+    if ($error[0] != SUCCESS) {
+      if ($error[0] == "23000") {
+        echo "Error: La matricula ya existe";
+      } else {
+        echo "Error: " . $error[2];
+      }
     } else {
       echo "Registro creado";
     }
@@ -84,7 +90,7 @@ if (isset($_POST["actualizar"])) {
     $stmt->execute();
     $error = $stmt->errorInfo();
 
-    if ($error[0] != "00000") {
+    if ($error[0] != SUCCESS) {
       echo "Error: " . $error[2];
     } else {
       echo "Dato actualizado correctamente";
@@ -144,4 +150,3 @@ if (isset($_POST["anterior"])) {
   }
 }
 
-// Josue Aburto Perez K021

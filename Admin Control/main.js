@@ -165,5 +165,3 @@ $(document).on('DOMContentLoaded', () => {
     return false;
   });
 });
-
-// Josue Aburto Perez K021
