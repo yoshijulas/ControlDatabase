@@ -14,14 +14,15 @@ try {
 }
 
 if (isset($_REQUEST["crear"])) {
-  $matricula = $_REQUEST["matricula"];
+  $idLibro = $_REQUEST["idLibro"];
   $nombre = $_REQUEST["nombre"];
-  $telefono = $_REQUEST["telefono"];
-  $edad = $_REQUEST["edad"];
+  $autor = $_REQUEST["autor"];
+  $anno = $_REQUEST["anno"];
+  $editorial = $_REQUEST["editorial"];
 
-  if (!empty($matricula) && !empty($nombre) && !empty($telefono) && !empty($edad)) {
-    $sql = "INSERT INTO datos(matricula, nombre, telefono, edad)
-     VALUES ('$matricula', '$nombre', '$telefono', '$edad')";
+  if (!empty($idLibro) && !empty($nombre) && !empty($autor) && !empty($anno) && !empty($editorial)) {
+    $sql = "INSERT INTO biblioteca(idLibro, nombre, autor, anno, editorial)
+     VALUES ('$idLibro', '$nombre', '$autor', '$anno', '$editorial')";
     // prepare sql and execute it
     $stmt = $connection->prepare($sql);
     $stmt->execute();
@@ -33,114 +34,6 @@ if (isset($_REQUEST["crear"])) {
     }
   } else {
     echo "Todos los campos son obligatorios";
-  }
-}
-
-if (isset($_POST["buscar"])) {
-  $matricula = $_POST["matricula"];
-
-  if (!empty($matricula)) {
-    $result = $connection->query("SELECT * FROM datos WHERE matricula = '{$matricula}' ");
-    $row = $result->fetch(PDO::FETCH_ASSOC);
-
-    $saved[] = "$row[matricula]";
-    $saved[] = "$row[nombre]";
-    $saved[] = "$row[telefono]";
-    $saved[] = "$row[edad]";
-
-    echo json_encode($saved);
-  } else {
-    echo "Matricula obligatoria";
-  }
-}
-
-if (isset($_POST["eliminar"])) {
-  $matricula = $_POST["matricula"];
-
-  if (!empty($matricula)) {
-    $sql = "DELETE FROM datos WHERE matricula = '{$matricula}' ";
-    $result = $connection->exec($sql);
-    if ($result > 0) {
-      echo "Registro eliminado con exito";
-    } else {
-      echo "Error al eliminar registro: " . $connection->errorInfo();
-    }
-  } else {
-    echo "Matricula obligatoria";
-  }
-}
-
-if (isset($_POST["actualizar"])) {
-  $matricula = $_POST["matricula"];
-  $nombre = $_POST["nombre"];
-  $telefono = $_POST["telefono"];
-  $edad = $_POST["edad"];
-
-  if (!empty($matricula) && !empty($nombre) && !empty($telefono) && !empty($edad)) {
-    $sql = "UPDATE datos SET nombre = '{$nombre}', telefono = '{$telefono}',
-     edad = '{$edad}' WHERE matricula = '{$matricula}' ";
-
-    $stmt = $connection->prepare($sql);
-    $stmt->execute();
-    $error = $stmt->errorInfo();
-
-    if ($error[0] != "00000") {
-      echo "Error: " . $error[2];
-    } else {
-      echo "Dato actualizado correctamente";
-    }
-  } else {
-    echo "Todos los campos son obligatorios";
-  }
-}
-
-if (isset($_POST["siguiente"])) {
-  $matricula = $_POST["matricula"];
-
-  if ($matricula == "") {
-    $matricula = 0;
-  }
-
-  $sql = "SELECT * FROM datos WHERE matricula > '{$matricula}' ORDER BY matricula ASC LIMIT 1";
-  $stmt = $connection->prepare($sql);
-  $stmt->execute();
-
-  $row = $stmt->fetch();
-
-  if ("$row[matricula]" == "") {
-    echo "0";
-  } else {
-    $saved[] = "$row[matricula]";
-    $saved[] = "$row[nombre]";
-    $saved[] = "$row[telefono]";
-    $saved[] = "$row[edad]";
-
-    echo json_encode($saved);
-  }
-}
-
-if (isset($_POST["anterior"])) {
-  $matricula = $_POST["matricula"];
-
-  if ($matricula == "") {
-    $matricula = 0;
-  }
-
-  $sql = "SELECT * FROM datos WHERE matricula < '{$matricula}' ORDER BY matricula DESC LIMIT 1";
-  $stmt = $connection->prepare($sql);
-  $stmt->execute();
-
-  $row = $stmt->fetch();
-
-  if ("$row[matricula]" == "") {
-    echo "0";
-  } else {
-    $saved[] = "$row[matricula]";
-    $saved[] = "$row[nombre]";
-    $saved[] = "$row[telefono]";
-    $saved[] = "$row[edad]";
-
-    echo json_encode($saved);
   }
 }
 

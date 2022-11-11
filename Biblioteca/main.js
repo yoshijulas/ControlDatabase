@@ -1,14 +1,14 @@
 /* eslint-disable no-undef */
-$(document).ready(() => {
-  $('#anterior').click(() => {
+$(document).on('DOMContentLoaded', () => {
+  $('#anterior').on('click', () => {
     const anterior = true;
-    const matricula = $('#matricula').val();
+    const idLibro = $('#idLibro').val();
 
     $.post(
       'query_pdo.php',
       {
         anterior,
-        matricula,
+        idLibro,
       },
       (response) => {
         if (response === '0') {
@@ -16,10 +16,11 @@ $(document).ready(() => {
         } else {
           const myArray = JSON.parse(response);
 
-          $('#matricula').val(myArray[0]);
-          $('#nombre').val(myArray[1]);
-          $('#telefono').val(myArray[2]);
-          $('#edad').val(myArray[3]);
+          $('#idLibro').val(myArray[0]);
+          $('#nombre-libro').val(myArray[1]);
+          $('#autor').val(myArray[2]);
+          $('#anno').val(myArray[3]);
+          $('#editorial').val(myArray[4]);
           $('#result').html('Registro anterior');
         }
       },
@@ -28,24 +29,26 @@ $(document).ready(() => {
     return false;
   });
 
-  $('#crear').click(() => {
+  $('#anadir').on('click', () => {
     const crear = true;
-    const matricula = $('#matricula').val();
-    const nombre = $('#nombre').val();
-    const telefono = $('#telefono').val();
-    const edad = $('#edad').val();
+    const idLibro = $('#idLibro').val();
+    const nombre = $('#nombre-libro').val();
+    const autor = $('#autor').val();
+    const anno = $('#anno').val();
+    const editorial = $('#editorial').val();
 
-    if (matricula === '' || nombre === '' || telefono === '' || edad === '') {
+    if (idLibro === '' || nombre === '' || autor === '' || anno === '' || editorial === '') {
       $('#result').html('Todos los campos son obligatorios');
     } else {
       $.post(
         'query_pdo.php',
         {
           crear,
-          matricula,
+          idLibro,
           nombre,
-          telefono,
-          edad,
+          autor,
+          anno,
+          editorial,
         },
         (response) => {
           $('#result').html(response);
@@ -55,18 +58,18 @@ $(document).ready(() => {
     return false;
   });
 
-  $('#buscar').click(() => {
+  $('#buscar').on('click', () => {
     const buscar = true;
-    const matricula = $('#matricula').val();
+    const idLibro = $('#idLibro').val();
 
-    if (matricula === '') {
-      $('#result').html('Matricula obligatoria');
+    if (idLibro === '') {
+      $('#result').html('idLibro obligatoria');
     } else {
       $.post(
         'query_pdo.php',
         {
           buscar,
-          matricula,
+          idLibro,
         },
         (response) => {
           const myArray = JSON.parse(response);
@@ -74,10 +77,11 @@ $(document).ready(() => {
           if (myArray[0] === '') {
             $('#result').html('No hay registros');
           } else {
-            $('#matricula').val(myArray[0]);
-            $('#nombre').val(myArray[1]);
-            $('#telefono').val(myArray[2]);
-            $('#edad').val(myArray[3]);
+            $('#idLibro').val(myArray[0]);
+            $('#nombre-libro').val(myArray[1]);
+            $('#autor').val(myArray[2]);
+            $('#anno').val(myArray[3]);
+            $('#editorial').val(myArray[4]);
 
             $('#result').html('Registro encontrado');
           }
@@ -87,19 +91,19 @@ $(document).ready(() => {
     return false;
   });
 
-  $('#eliminar').click(() => {
+  $('#eliminar').on('click', () => {
     const eliminar = true;
 
-    const matricula = $('#matricula').val();
+    const idLibro = $('#idLibro').val();
 
-    if (matricula === '') {
+    if (idLibro === '') {
       $('#result').html('Todos los campos son obligatorios');
     } else {
       $.post(
         'query_pdo.php',
         {
           eliminar,
-          matricula,
+          idLibro,
         },
         (response) => {
           $('#result').html(response);
@@ -109,24 +113,26 @@ $(document).ready(() => {
     return false;
   });
 
-  $('#actualizar').click(() => {
+  $('#actualizar').on('click', () => {
     const actualizar = true;
-    const matricula = $('#matricula').val();
-    const nombre = $('#nombre').val();
-    const telefono = $('#telefono').val();
-    const edad = $('#edad').val();
+    const idLibro = $('#idLibro').val();
+    const nombre = $('#nombre-libro').val();
+    const autor = $('#autor').val();
+    const anno = $('#anno').val();
+    const editorial = $('#editorial').val();
 
-    if (matricula === '' || nombre === '' || telefono === '' || edad === '') {
+    if (idLibro === '' || nombre === '' || autor === '' || anno === '' || editorial === '') {
       $('#result').html('Todos los campos son obligatorios');
     } else {
       $.post(
         'query_pdo.php',
         {
           actualizar,
-          matricula,
+          idLibro,
           nombre,
-          telefono,
-          edad,
+          autor,
+          anno,
+          editorial,
         },
         (response) => {
           $('#result').html(response);
@@ -136,15 +142,15 @@ $(document).ready(() => {
     return false;
   });
 
-  $('#siguiente').click(() => {
+  $('#siguiente').on('click', () => {
     const siguiente = true;
-    const matricula = $('#matricula').val();
+    const idLibro = $('#idLibro').val();
 
     $.post(
       'query_pdo.php',
       {
         siguiente,
-        matricula,
+        idLibro,
       },
       (response) => {
         if (response === '0') {
@@ -152,10 +158,11 @@ $(document).ready(() => {
         } else {
           const myArray = JSON.parse(response);
 
-          $('#matricula').val(myArray[0]);
-          $('#nombre').val(myArray[1]);
-          $('#telefono').val(myArray[2]);
-          $('#edad').val(myArray[3]);
+          $('#idLibro').val(myArray[0]);
+          $('#nombre-libro').val(myArray[1]);
+          $('#autor').val(myArray[2]);
+          $('#anno').val(myArray[3]);
+          $('#editorial').val(myArray[4]);
 
           $('#result').html('Registro siguiente');
         }
@@ -165,5 +172,3 @@ $(document).ready(() => {
     return false;
   });
 });
-
-// Josue Aburto Perez K021
