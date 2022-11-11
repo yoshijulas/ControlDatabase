@@ -1,5 +1,8 @@
 <?php
 
+define("SUCCESS", "00000");
+define("ERROR_PREFIX", "Error: ");
+
 $hostname = "localhost"; // Host name
 $username = "root"; // Mysql username
 $password = ""; // Mysql password
@@ -14,20 +17,24 @@ try {
 }
 
 if (isset($_REQUEST["crear"])) {
-  $matricula = $_REQUEST["matricula"];
+  $correo = $_REQUEST["correo"];
   $nombre = $_REQUEST["nombre"];
   $telefono = $_REQUEST["telefono"];
-  $edad = $_REQUEST["edad"];
+  $contrasena = $_REQUEST["contrasena"];
 
-  if (!empty($matricula) && !empty($nombre) && !empty($telefono) && !empty($edad)) {
-    $sql = "INSERT INTO datos(matricula, nombre, telefono, edad)
-     VALUES ('$matricula', '$nombre', '$telefono', '$edad')";
+  if (!empty($correo) && !empty($nombre) && !empty($telefono) && !empty($contrasena)) {
+    $sql = "INSERT INTO usuario(correo, nombre, telefono, contrasena)
+     VALUES ('$correo', '$nombre', '$telefono', '$contrasena')";
     // prepare sql and execute it
     $stmt = $connection->prepare($sql);
     $stmt->execute();
     $error = $stmt->errorInfo();
-    if ($error[0] != "00000") {
-      echo "Error: " . $error[2];
+    if ($error[0] != SUCCESS) {
+      if ($error[0] == "23000") {
+        echo "El correo ya existe";
+      } else {
+        echo ERROR_PREFIX . $error[2];
+      }
     } else {
       echo "Registro creado";
     }
@@ -36,112 +43,32 @@ if (isset($_REQUEST["crear"])) {
   }
 }
 
-if (isset($_POST["buscar"])) {
-  $matricula = $_POST["matricula"];
+if (isset($_REQUEST["restablecer"])) {
+  $correo = $_REQUEST["correo"];
+  $contrasena = $_REQUEST["contrasena"];
 
-  if (!empty($matricula)) {
-    $result = $connection->query("SELECT * FROM datos WHERE matricula = '{$matricula}' ");
-    $row = $result->fetch(PDO::FETCH_ASSOC);
-
-    $saved[] = "$row[matricula]";
-    $saved[] = "$row[nombre]";
-    $saved[] = "$row[telefono]";
-    $saved[] = "$row[edad]";
-
-    echo json_encode($saved);
-  } else {
-    echo "Matricula obligatoria";
-  }
-}
-
-if (isset($_POST["eliminar"])) {
-  $matricula = $_POST["matricula"];
-
-  if (!empty($matricula)) {
-    $sql = "DELETE FROM datos WHERE matricula = '{$matricula}' ";
-    $result = $connection->exec($sql);
-    if ($result > 0) {
-      echo "Registro eliminado con exito";
-    } else {
-      echo "Error al eliminar registro: " . $connection->errorInfo();
-    }
-  } else {
-    echo "Matricula obligatoria";
-  }
-}
-
-if (isset($_POST["actualizar"])) {
-  $matricula = $_POST["matricula"];
-  $nombre = $_POST["nombre"];
-  $telefono = $_POST["telefono"];
-  $edad = $_POST["edad"];
-
-  if (!empty($matricula) && !empty($nombre) && !empty($telefono) && !empty($edad)) {
-    $sql = "UPDATE datos SET nombre = '{$nombre}', telefono = '{$telefono}',
-     edad = '{$edad}' WHERE matricula = '{$matricula}' ";
-
+  if (!empty($correo) && !empty($contrasena)) {
+    $sql = "SELECT * FROM usuario WHERE correo = '{$correo}' ";
     $stmt = $connection->prepare($sql);
     $stmt->execute();
     $error = $stmt->errorInfo();
-
-    if ($error[0] != "00000") {
-      echo "Error: " . $error[2];
+    if ($error[0] != SUCCESS) {
+      echo ERROR_PREFIX . $error[2];
     } else {
-      echo "Dato actualizado correctamente";
+      $result = $stmt->fetch(PDO::FETCH_ASSOC);
+      if ($result) {
+        $sql = "UPDATE usuario SET contrasena = '{$contrasena}' WHERE correo = '{$correo}' ";
+        $stmt = $connection->prepare($sql);
+        $stmt->execute();
+        $error = $stmt->errorInfo();
+        if ($error[0] != SUCCESS) {
+          echo ERROR_PREFIX . $error[2];
+        } else {
+          echo "Contraseña actualizada";
+        }
+      } else {
+        echo "El correo no existe";
+      }
     }
-  } else {
-    echo "Todos los campos son obligatorios";
   }
 }
-
-if (isset($_POST["siguiente"])) {
-  $matricula = $_POST["matricula"];
-
-  if ($matricula == "") {
-    $matricula = 0;
-  }
-
-  $sql = "SELECT * FROM datos WHERE matricula > '{$matricula}' ORDER BY matricula ASC LIMIT 1";
-  $stmt = $connection->prepare($sql);
-  $stmt->execute();
-
-  $row = $stmt->fetch();
-
-  if ("$row[matricula]" == "") {
-    echo "0";
-  } else {
-    $saved[] = "$row[matricula]";
-    $saved[] = "$row[nombre]";
-    $saved[] = "$row[telefono]";
-    $saved[] = "$row[edad]";
-
-    echo json_encode($saved);
-  }
-}
-
-if (isset($_POST["anterior"])) {
-  $matricula = $_POST["matricula"];
-
-  if ($matricula == "") {
-    $matricula = 0;
-  }
-
-  $sql = "SELECT * FROM datos WHERE matricula < '{$matricula}' ORDER BY matricula DESC LIMIT 1";
-  $stmt = $connection->prepare($sql);
-  $stmt->execute();
-
-  $row = $stmt->fetch();
-
-  if ("$row[matricula]" == "") {
-    echo "0";
-  } else {
-    $saved[] = "$row[matricula]";
-    $saved[] = "$row[nombre]";
-    $saved[] = "$row[telefono]";
-    $saved[] = "$row[edad]";
-
-    echo json_encode($saved);
-  }
-}
-
-// Josue Aburto Perez K021

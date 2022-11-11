@@ -11,19 +11,21 @@
   </head>
   <body>
     <header class="bg-slate-300 py-2 border-b-slate-400 border-b-2">
-      <h1 class="text-5xl font-bold text-center py-4 text-neutral-700">Consulta de Informacion</h1>
+      <h1 class="text-5xl font-bold text-center py-4 text-neutral-700">Registro de usuario</h1>
     </header>
 
-    <div id="main-container" class="border-orange-300 border-2 mx-6 rounded-md p-4 my-4 bg-violet-100 mt-10">
+    <div
+      id="main-container"
+      class="min-w-[18rem] max-w-[30rem] w-[50%] border-orange-300 border-2 mx-auto rounded-md p-4 my-4 bg-violet-100 mt-10">
       <form id="data-form" action="" method="post">
-        <div id="input-div" class="flex justify-around flex-wrap pb-6">
-          <div id="matricula-div" class="flex flex-col text-center">
-            <label for="matricula" class="text-neutral-500">Matricula</label>
+        <div id="input-div" class="flex-col justify-around flex-wrap pb-6">
+          <div id="correo-div" class="flex flex-col text-center">
+            <label for="correo" class="text-neutral-500">Correo</label>
             <input
               type="text"
-              name="matricula"
-              id="matricula"
-              placeholder="Matricula"
+              name="correo"
+              id="correo"
+              placeholder="Correo"
               class="rounded-md border-gray-600 py-1 px-2 m-2 shadow" />
           </div>
 
@@ -47,25 +49,30 @@
               class="rounded-md border-gray-600 py-1 px-2 m-2 shadow" />
           </div>
 
-          <div id="edad-div" class="flex flex-col text-center">
-            <label for="edad" class="text-neutral-500">Edad</label>
+          <div id="contrasena-div" class="flex flex-col text-center">
+            <label for="contrasena" class="text-neutral-500">Contraseña</label>
             <input
-              type="text"
-              name="edad"
-              id="edad"
-              placeholder="Edad"
+              type="password"
+              name="contrasena"
+              id="contrasena"
+              placeholder="Contraseña"
               class="rounded-md border-gray-600 py-1 px-2 m-2 shadow" />
           </div>
         </div>
 
         <div id="buttons-div" class="flex justify-between flex-wrap">
-
           <input
             type="submit"
             value="Crear"
             name="crear"
             id="crear"
             class="w-32 mx-auto bg-white shadow py-2 px-8 my-2 rounded hover:bg-slate-200 hover:cursor-pointer" />
+          <input
+            type="submit"
+            value="Restablecer contraseña"
+            name="restablecer"
+            id="restablecer"
+            class="w-auto mx-auto bg-white shadow py-2 px-4 my-2 rounded hover:bg-slate-200 hover:cursor-pointer" />
         </div>
       </form>
     </div>
@@ -78,6 +85,5 @@
     </div>
   </body>
 </html>
-
 
 <!-- Josue Aburto Perez K021 -->
