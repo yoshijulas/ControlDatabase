@@ -47,9 +47,10 @@ Create table for Admin Control
 
 Create table for login
 ```SQL
- CREATE TABLE login (
+ CREATE TABLE login(
   username varchar(30) NOT NULL,
   password varchar(30) DEFAULT NULL,
+  admin tinyint(1) DEFAULT NULL,
   PRIMARY KEY (username)
 );
 ```
