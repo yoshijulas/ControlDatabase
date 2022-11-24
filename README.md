@@ -50,7 +50,7 @@ Create table for login
  CREATE TABLE login(
   username varchar(30) NOT NULL,
   password varchar(30) DEFAULT NULL,
-  admin tinyint(1) DEFAULT NULL,
+  admin tinyint(1) DEFAULT 0,
   PRIMARY KEY (username)
 );
 ```
