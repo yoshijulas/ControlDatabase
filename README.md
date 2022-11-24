@@ -45,6 +45,14 @@ Create table for Admin Control
 );
 ```
 
+Create table for login
+```SQL
+ CREATE TABLE login (
+  username varchar(30) NOT NULL,
+  password varchar(30) DEFAULT NULL,
+  PRIMARY KEY (username)
+);
+```
 
 
 
