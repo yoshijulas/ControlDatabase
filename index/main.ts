@@ -4,10 +4,7 @@ $(document).on("DOMContentLoaded", () => {
 		let login = true;
 		let usuario = $("#usuario").val();
 		let password = $("#password").val();
-
-		if (usuario === "" || password === "") {
-			$("#result").html("Todos los campos son obligatorios");
-		} else {
+		if (usuario && password) {
 			$.post(
 				"query_pdo.php",
 				{
@@ -25,6 +22,8 @@ $(document).on("DOMContentLoaded", () => {
 					}
 				},
 			);
+		} else {
+			$("#result").html("Todos los campos son obligatorios");
 		}
 		return false;
 	});
