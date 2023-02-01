@@ -1,9 +1,9 @@
 // jquery on page load
 $(document).on("DOMContentLoaded", () => {
 	$("#login").on("click", () => {
-		let login = true;
-		let usuario = $("#usuario").val();
-		let password = $("#password").val();
+		const login = true;
+		const usuario = $("#usuario").val();
+		const password = $("#password").val();
 		if (usuario && password) {
 			$.post(
 				"query_pdo.php",
