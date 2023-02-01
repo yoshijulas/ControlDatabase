@@ -114,7 +114,7 @@ if (isset($_POST["siguiente"])) {
 
   $row = $stmt->fetch();
 
-  if ("$row[idLibro]" == "") {
+  if (!is_array($row)) {
     echo "0";
   } else {
     $saved[] = "$row[idLibro]";
@@ -140,7 +140,7 @@ if (isset($_POST["anterior"])) {
 
   $row = $stmt->fetch();
 
-  if ("$row[idLibro]" == "") {
+  if (!is_array($row)) {
     echo "0";
   } else {
     $saved[] = "$row[idLibro]";

@@ -113,7 +113,7 @@ if (isset($_POST["siguiente"])) {
 
   $row = $stmt->fetch();
 
-  if ("$row[matricula]" == "") {
+  if (!is_array($row)) {
     echo "0";
   } else {
     $saved[] = "$row[matricula]";
@@ -138,7 +138,7 @@ if (isset($_POST["anterior"])) {
 
   $row = $stmt->fetch();
 
-  if ("$row[matricula]" == "") {
+  if (!is_array($row)) {
     echo "0";
   } else {
     $saved[] = "$row[matricula]";
@@ -149,4 +149,3 @@ if (isset($_POST["anterior"])) {
     echo json_encode($saved);
   }
 }
-
