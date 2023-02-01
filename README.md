@@ -1,6 +1,7 @@
 # Code to create tables for the database
 
 Create Database
+
 ```SQL
 CREATE DATABASE proyecto;
 ```
@@ -12,6 +13,7 @@ USE proyecto;
 ```
 
 Create table for libros/biblioteca
+
 ```SQL
 CREATE TABLE libros (
   idLibro int(11) NOT NULL AUTO_INCREMENT,
@@ -24,6 +26,7 @@ CREATE TABLE libros (
 ```
 
 Create table for Usuarios
+
 ```SQL
  CREATE TABLE usuario (
   correo varchar(50) NOT NULL,
@@ -35,6 +38,7 @@ Create table for Usuarios
 ```
 
 Create table for Admin Control
+
 ```SQL
  CREATE TABLE datos (
   matricula int(10) NOT NULL AUTO_INCREMENT,
@@ -46,6 +50,7 @@ Create table for Admin Control
 ```
 
 Create table for login
+
 ```SQL
  CREATE TABLE login(
   username varchar(30) NOT NULL,
@@ -54,6 +59,3 @@ Create table for login
   PRIMARY KEY (username)
 );
 ```
-
-
-
