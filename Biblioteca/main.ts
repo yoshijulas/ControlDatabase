@@ -77,7 +77,7 @@ $(document).on("DOMContentLoaded", () => {
 					buscar,
 					idLibro,
 				},
-				(response: string) => {
+				(response) => {
 					const myArray = JSON.parse(response);
 
 					if (myArray[0] === "") {

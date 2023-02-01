@@ -68,7 +68,7 @@ $(document).on("DOMContentLoaded", () => {
 					buscar,
 					matricula,
 				},
-				(response: string) => {
+				(response) => {
 					const myArray = JSON.parse(response);
 
 					if (myArray[0] === "") {
