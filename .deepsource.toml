@@ -5,3 +5,12 @@ name = "javascript"
 
 [[analyzers]]
 name = "php"
+
+[[transformers]]
+name = "prettier"
+
+[[transformers]]
+name = "standardjs"
+
+[[transformers]]
+name = "php-cs-fixer"
